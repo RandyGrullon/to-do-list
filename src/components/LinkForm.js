@@ -2,9 +2,13 @@ import React,{ useState}  from "react";
 
 const LinkForm = (props) => {
 
+  const Time = new Date();
+  const date = Time.toUTCString();
+
     const initialStateValues = {
         todo:'',
-        description:''
+        description:'',
+        time: date,
     };
 
     const [todos, setTodos] = useState(initialStateValues);

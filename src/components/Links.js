@@ -1,19 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import LinkForm from "./LinkForm";
 import { db } from "../firebase";
 
 const Links = () => {
+  const [todos, setTodos] = useState([]);
+
   const addOrEditTask = async (linkObject) => {
     await db.collection("todos").doc().set(linkObject);
-    console.log("new task added");
   };
 
   const getLinks = async () => {
-    const querySnapshot = await db.collection("todos").onSnapshot()(querySnapshot)=> {
+    db.collection("todos").onSnapshot((querySnapshot) => {
+      const docs = [];
       querySnapshot.forEach((doc) => {
-        console.log(doc.data());
-    }
-   
+        docs.push({ ...doc.data(), id: doc.id });
+      });
+      setTodos(docs);
     });
   };
 
@@ -24,7 +26,17 @@ const Links = () => {
   return (
     <div>
       <LinkForm addOrEditTask={addOrEditTask} />
-      Links
+      <div className="col-md-16">
+        {todos.map((todo) => (
+          <div className="card mb-2">
+            <div className="card-body">
+              <h4>{todo.todo}</h4>
+              <p>{todo.description}</p>
+              <p>{todo.time}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
