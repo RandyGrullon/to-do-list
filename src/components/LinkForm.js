@@ -1,4 +1,5 @@
-import React,{ useState}  from "react";
+import React,{ useState, useEffect}  from "react";
+
 
 const LinkForm = (props) => {
 
@@ -25,6 +26,16 @@ const LinkForm = (props) => {
         props.addOrEditTask(todos);
         setTodos({...initialStateValues});
     }
+
+    useEffect(() => {
+      if (props.currentId === '') {
+          setTodos({...initialStateValues});        
+      }else{
+        console.log();
+      }
+
+    },[]);
+
   return (
     <form className="card card-body" onSubmit={handleSubmit}>
       <div className="form-group input-group">
