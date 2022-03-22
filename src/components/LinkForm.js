@@ -1,6 +1,6 @@
-import React,{ useState, useEffect}  from "react";
+import React,{ useState}  from "react";
 
-const LinkForm = () => {
+const LinkForm = (props) => {
 
     const initialStateValues = {
         todo:'',
@@ -12,11 +12,14 @@ const LinkForm = () => {
     const handleInputChange = (e) => {
         const {name, value} = e.target;
        setTodos({...todos, [name]: value})
+       
     }
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(todos);
+        // console.log(todos);
+        props.addOrEditTask(todos);
+        setTodos({...initialStateValues});
     }
   return (
     <form className="card card-body" onSubmit={handleSubmit}>
@@ -31,11 +34,19 @@ const LinkForm = () => {
           className="form-control"
           placeholder="TODO"
           name="todo"
+          value={todos.todo}
         />
       </div>
 
       <div className="form-group">
-          <textarea onChange={handleInputChange} name="description" id="" className="form-control" placeholder="Description" rows="3"></textarea>
+          <textarea onChange={handleInputChange} 
+          name="description" 
+          id="" 
+          className="form-control" 
+          placeholder="Description" 
+          rows="3"
+          value={todos.description}
+          ></textarea>
       </div>
 
       <button className="btn btn-primary btn-block">save</button>

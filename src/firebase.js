@@ -17,5 +17,5 @@ const db = firebaseApp.firestore();
 
 
 
-export default db;
+export {db};
 
