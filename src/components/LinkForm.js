@@ -1,4 +1,5 @@
 import React,{ useState, useEffect}  from "react";
+import { db } from "../firebase";
 
 
 const LinkForm = (props) => {
@@ -22,19 +23,24 @@ const LinkForm = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        // console.log(todos);
+        
         props.addOrEditTask(todos);
         setTodos({...initialStateValues});
+    }
+
+    const getTodoById = async (id) => {
+        const doc = await db.collection('todos').doc(id).get();
+        setTodos({...doc.data()})
     }
 
     useEffect(() => {
       if (props.currentId === '') {
           setTodos({...initialStateValues});        
       }else{
-        console.log();
+        getTodoById(props.currentId);
       }
-
-    },[]);
+      setTodos('');
+    },[props.currentId]);
 
   return (
     <form className="card card-body" onSubmit={handleSubmit}>
@@ -64,7 +70,9 @@ const LinkForm = (props) => {
           ></textarea>
       </div>
 
-      <button className="btn btn-primary btn-block">save</button>
+      <button className="btn btn-primary btn-block">
+        {props.currentId === '' ? 'Save': 'Update'}
+        </button>
     </form>
   );
 };

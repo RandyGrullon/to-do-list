@@ -8,10 +8,17 @@ const Links = () => {
   const [currentId, setCurrentId] = useState('');
 
   const addOrEditTask = async (linkObject) => {
+   if (currentId === '') {
     await db.collection("todos").doc().set(linkObject);
     toast('todo Added',{
       type: 'success'
     })
+   }else{
+      await db.collection("todos").doc(currentId).update(linkObject);
+      toast('todo updated',{
+        type: 'info'
+      })
+   }
   };
 
   const onDeleteTask = async (id) => {
