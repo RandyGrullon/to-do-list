@@ -10,7 +10,9 @@ const LinkForm = (props) => {
     const initialStateValues = {
         todo:'',
         description:'',
+        completed:'',
         time: date,
+        
     };
 
     const [todos, setTodos] = useState(initialStateValues);

@@ -21,6 +21,17 @@ const Links = () => {
    }
   };
 
+  const toggleComplete = (id) => {
+    const updatedTodos = [...todos].map((todo) => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed
+      }
+      return todo
+    })
+    setTodos(updatedTodos)
+    console.log(updatedTodos)
+  }
+
   const onDeleteTask = async (id) => {
     if(window.confirm("Are you sure you want to delete the todo")){
       await db.collection("todos").doc(id).delete();
@@ -66,10 +77,15 @@ const Links = () => {
                 >
                   create
                 </i>
+                <input type="checkbox"  
+                onChange={() => toggleComplete(todo.id)}
+                checked={todo.completed}
+                />
                </div>
               </div>
               <p>{todo.description}</p>
               <p>{todo.time}</p>
+              <p>{todo.completed}</p>
             </div>
           </div>
         ))}
