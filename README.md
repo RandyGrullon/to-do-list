@@ -1,3 +1,51 @@
+# React and Firebase Todo App
+This is a sample react todo app done step-by-step.
+
+## Instructions
+
+First clone this repository.
+```bash
+$ git clone https://github.com/RandyGrullon/to-do-list.git
+```
+
+Install dependencies. Make sure you already have [`nodejs`](https://nodejs.org/en/) & [`npm`](https://www.npmjs.com/) installed in your system.
+```bash
+$ npm install # or yarn
+```
+
+Run it
+```bash
+$ npm start # or yarn start
+```
+
+## Steps
+Each step is a branch. Check out to the step you want to test.
+
+* [step-0](https://github.com/RandyGrullon/to-do-list/commit/e2080469fd5e578a44558ee952b47bff811fda0d) - Setup app using `create-react-app`, and creating methods for data entry.
+* [step-1](https://github.com/RandyGrullon/to-do-list/commit/bcfad2eb87b45b95436e19b82e9a6d63a9e711bd) - Listing Data from firebase in console.
+* [step-2](https://github.com/RandyGrullon/to-do-list/commit/b7a03ee6c38ef3c459ba7ec68f99a0d7740338c8) - Fixing the add method and listing.
+* [step-3](https://github.com/RandyGrullon/to-do-list/commit/b5155116c5bbd04b74846cc0858a553c37151058) - Adding the delete function.
+* [step-4](https://github.com/RandyGrullon/to-do-list/commit/ca889d089897edf9876f9ffc98c78a542bba38d9) - Fixing the edit feature.
+* [step-5](https://github.com/RandyGrullon/to-do-list/commit/e7c373800328b5a9f178d4bcc59682d3e03ecd6d) - Adding the complete and completed action with a checkbox.
+* [step-6](https://github.com/RandyGrullon/to-do-list/commit/3177daefca128fe0d9c5ec80f38464a1452087fc) - Fixing the completed or not section.
+* [step-7](https://github.com/RandyGrullon/to-do-list/commit/460a893c61ef142bf87a4efc0b23a47d64391cba) - UI in Link component.
+* [step-8](https://github.com/RandyGrullon/to-do-list/commit/0c579fdc0a526b393956640bc0e7fb6938af0295) - Update and delete style, adding cursor feature.
+* [step-9](https://github.com/RandyGrullon/to-do-list/commit/d64d19d4689ec19ca05d6b8c620bf9422f4b3c8f) - fixing some code of editing method, and adding pictures tu the ito images folder
+
+# Pictures
+## Home Page
+![Image text](https://github.com/RandyGrullon/to-do-list/blob/main/images/home.PNG)
+## Deleting
+![Image text](https://github.com/RandyGrullon/to-do-list/blob/main/images/Delete.PNG)
+## Updating
+![Image text](https://github.com/RandyGrullon/to-do-list/blob/main/images/Update.PNG)
+![Image text](https://github.com/RandyGrullon/to-do-list/blob/main/images/Update-v2.PNG)
+## Data base With Firebase
+![Image text](https://github.com/RandyGrullon/to-do-list/blob/main/images/Base%20de%20datos.PNG)
+
+
+# React Documentary
+↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
