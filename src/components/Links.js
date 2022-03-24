@@ -70,6 +70,10 @@ const Links = () => {
     getLinks();
   }, []);
 
+const stylex = {
+  cursor: 'pointer',
+}
+
   return (
     <div>
       <LinkForm {...{addOrEditTask, currentId, todos}} />
@@ -81,19 +85,19 @@ const Links = () => {
                 <h4>{todo.todo}</h4>
                <div>
               
-               <i
+               <i style={stylex}
                   className="material-icons text-danger"
                   onClick={() => onDeleteTask(todo.id)}
                 >
                   delete
                 </i>
-                <i
+                <i style={stylex}
                   className="material-icons"
-                  onClick={() => setCurrentId(todo)}
+                  onClick={() => setCurrentId(todo.id)}
                 >
                   create
                 </i>
-                <input type="checkbox"  
+                <input style={stylex} type="checkbox"  
                 onChange={() => toggleComplete(todo.id)}
                 checked={todo.completed}
                 />

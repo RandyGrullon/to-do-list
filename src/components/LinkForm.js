@@ -26,7 +26,7 @@ const LinkForm = (props) => {
         e.preventDefault();
         props.addOrEditTask(todos);
         setTodos(initialStateValues);
-        console.log(e);
+        
     }
 
     const getTodoById = async (id) => {
