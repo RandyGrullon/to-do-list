@@ -80,7 +80,7 @@ const Links = () => {
               <div className="d-flex justify-content-between">
                 <h4>{todo.todo}</h4>
                <div>
-               <i className="material-icons">add</i>
+              
                <i
                   className="material-icons text-danger"
                   onClick={() => onDeleteTask(todo.id)}
