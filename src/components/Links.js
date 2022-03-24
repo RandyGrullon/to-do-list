@@ -15,6 +15,7 @@ const Links = () => {
       type: 'success',
       autoClose: 1000
     })
+    
    }else{
       await db.collection("todos").doc(linkObject.id).update(linkObject);
       toast('todo updated',{
@@ -39,7 +40,6 @@ const Links = () => {
         todo.completed = !todo.completed
         return editTaskComplete(todo)
       }
-      
       return todo
     })
     setTodos(updatedTodos)
@@ -57,7 +57,6 @@ const Links = () => {
 
   const getLinks = async () => {
     db.collection("todos").onSnapshot((querySnapshot) => {
-      
       const docs = [];
       querySnapshot.forEach((doc) => {
         docs.push({ ...doc.data(), id: doc.id });
@@ -65,7 +64,6 @@ const Links = () => {
       setTodos(docs);
     });
   };
-
   useEffect(() => {
     getLinks();
   }, []);
@@ -73,7 +71,6 @@ const Links = () => {
 const stylex = {
   cursor: 'pointer',
 }
-
   return (
     <div>
       <LinkForm {...{addOrEditTask, currentId, todos}} />
