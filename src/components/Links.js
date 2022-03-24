@@ -7,42 +7,57 @@ const Links = () => {
   const [todos, setTodos] = useState([]);
   const [currentId, setCurrentId] = useState('');
 
+  //agregar
   const addOrEditTask = async (linkObject) => {
-   if (currentId === '') {
+   if ( currentId=== '') {
     await db.collection("todos").doc().set(linkObject);
     toast('todo Added',{
-      type: 'success'
+      type: 'success',
+      autoClose: 1000
     })
    }else{
-      await db.collection("todos").doc(currentId).update(linkObject);
+      await db.collection("todos").doc(linkObject.id).update(linkObject);
       toast('todo updated',{
-        type: 'info'
+        type: 'info',
+        autoClose: 1000
       })
    }
   };
-
-  const toggleComplete = (id) => {
+  //editar complete
+  const editTaskComplete = async (linkObject) => {
+  
+    await db.collection("todos").doc(linkObject.id).update(linkObject);
+      toast('todo updated',{
+        type: 'info',
+        autoClose: 1000
+      })
+  }
+  //check
+  const toggleComplete = async (id) => {
     const updatedTodos = [...todos].map((todo) => {
       if (todo.id === id) {
         todo.completed = !todo.completed
+        return editTaskComplete(todo)
       }
+      
       return todo
     })
     setTodos(updatedTodos)
-    console.log(updatedTodos)
   }
 
   const onDeleteTask = async (id) => {
     if(window.confirm("Are you sure you want to delete the todo")){
       await db.collection("todos").doc(id).delete();
       toast('todo deleted',{
-        type: 'error'
+        type: 'error',
+        autoClose: 1000
       })
     }
   };
 
   const getLinks = async () => {
     db.collection("todos").onSnapshot((querySnapshot) => {
+      
       const docs = [];
       querySnapshot.forEach((doc) => {
         docs.push({ ...doc.data(), id: doc.id });
@@ -65,6 +80,7 @@ const Links = () => {
               <div className="d-flex justify-content-between">
                 <h4>{todo.todo}</h4>
                <div>
+               <i className="material-icons">add</i>
                <i
                   className="material-icons text-danger"
                   onClick={() => onDeleteTask(todo.id)}
@@ -73,7 +89,7 @@ const Links = () => {
                 </i>
                 <i
                   className="material-icons"
-                  onClick={() => setCurrentId(todo.id)}
+                  onClick={() => setCurrentId(todo)}
                 >
                   create
                 </i>
@@ -85,7 +101,6 @@ const Links = () => {
               </div>
               <p>{todo.description}</p>
               <p>{todo.time}</p>
-              <p>{todo.completed}</p>
             </div>
           </div>
         ))}

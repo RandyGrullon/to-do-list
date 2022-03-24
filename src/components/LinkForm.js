@@ -3,31 +3,30 @@ import { db } from "../firebase";
 
 
 const LinkForm = (props) => {
-
   const Time = new Date();
   const date = Time.toUTCString();
 
-    const initialStateValues = {
-        todo:'',
-        description:'',
-        completed:'',
-        time: date,
-        
-    };
+  const initialStateValues = {
+    currentId:'',
+    todo:'',
+    description:'',
+    completed:false,
+    time: date,
+    
+};
 
     const [todos, setTodos] = useState(initialStateValues);
-
+    
     const handleInputChange = (e) => {
         const {name, value} = e.target;
-       setTodos({...todos, [name]: value})
-       
+       setTodos({...todos, [name]: value, completed: false, time:date})
     }
 
     const handleSubmit = e => {
         e.preventDefault();
-        
         props.addOrEditTask(todos);
-        setTodos({...initialStateValues});
+        setTodos(initialStateValues);
+        console.log(e);
     }
 
     const getTodoById = async (id) => {
@@ -47,9 +46,9 @@ const LinkForm = (props) => {
   return (
     <form className="card card-body" onSubmit={handleSubmit}>
       <div className="form-group input-group">
-        <div className="input-group-text  bg-grey">
-          <i className="material-icons">add</i>
-        </div>
+        
+         
+       
 
         <input
         onChange={handleInputChange} 
@@ -73,7 +72,7 @@ const LinkForm = (props) => {
       </div>
 
       <button className="btn btn-primary btn-block">
-        {props.currentId === '' ? 'Save': 'Update'}
+        Save
         </button>
     </form>
   );
